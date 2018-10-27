@@ -1,3 +1,13 @@
 h1= @post.title
 p= @author.nick
 p= @post.content
+
+hr
+h2 Comments
+hr
+
+= form_for [@post, Comment.new] do |f|
+  = f.text_area :content, placeholder: "Add a comment"
+  = f.submit "Add Comment"
+ul
+  = render(partial: 'comments/comment', collection: @post.comments)
