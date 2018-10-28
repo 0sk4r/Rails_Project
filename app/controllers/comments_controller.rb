@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_author!
   before_action :find_commented_by
 
   def new
@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content).merge(author_id: current_user.id)
+    params.require(:comment).permit(:content).merge(author_id: current_author.id)
   end
 
   def find_commented_by
