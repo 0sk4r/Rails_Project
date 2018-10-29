@@ -1,24 +1,22 @@
-# README
+# Ruby on Rails Reddit like app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#Heroku
+Stable: `https://pure-journey-89170.herokuapp.com/`
 
-Things you may want to cover:
+Staging: `https://radiant-springs-18790.herokuapp.com/`
 
-* Ruby version
+#Setup
 
-* System dependencies
+```console
+git clone https://github.com/0sk4r/Rails_Project.git
 
-* Configuration
+cd Raills_Project
 
-* Database creation
+rake db:migrate
 
-* Database initialization
+bin/setup
 
-* How to run the test suite
+rails s
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#Go to localhost:3000/
+```
