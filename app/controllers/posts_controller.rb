@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   def index
     @posts = Post.all
   end
 
-  before_action :authenticate_author!, only: [:new, :create]
+  before_action :authenticate_author!, only: %i[new create]
   def new
     @post = Post.new
   end
@@ -15,7 +17,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(
-        params.require(:post).permit(:content, :title).merge(author_id: current_author.id)
+      params.require(:post).permit(:content, :title).merge(author_id: current_author.id)
     )
 
     flash[:notice] = if @post.save

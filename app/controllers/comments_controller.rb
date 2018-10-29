@@ -1,5 +1,6 @@
-class CommentsController < ApplicationController
+# frozen_string_literal: true
 
+class CommentsController < ApplicationController
   before_action :authenticate_author!
   before_action :find_commented_by
 
@@ -39,5 +40,4 @@ class CommentsController < ApplicationController
     @commented_by = Comment.find_by_id(params[:comment_id]) if params[:comment_id]
     @commented_by = Post.find_by_id(params[:post_id]) if params[:post_id]
   end
-
 end
