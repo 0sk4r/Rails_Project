@@ -15,7 +15,18 @@ class CommentsController < ApplicationController
                      else
                        @comment.errors.full_messages.join('. ')
                      end
-    redirect_to @comment
+    redirect_to '/'
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+
+    flash[:notice] = if @comment.destroy
+                       'Komentarz usunięty'
+                     else
+                       @comment.errors.full_messages.join('. ')
+                     end
+    redirect_to '/'
   end
 
   private

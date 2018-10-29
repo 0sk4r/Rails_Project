@@ -1,0 +1,10 @@
+= form_for @post do |f|
+
+  .form-group
+    = f.text_field :title
+
+  .form-group
+    = f.text_area :content, rows: 10, class: 'form-control'
+
+  .form-group
+    = f.submit 'Zapisz', class: 'btn btn-primary'

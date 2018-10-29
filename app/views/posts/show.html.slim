@@ -1,6 +1,10 @@
 h1= @post.title
-p= @author.nick
+a href=author_path(@author)
+  =@author.nick
 p= @post.content
+
+- if current_author.id == @author.id
+  = link_to "Delete", post_path(@post), :method => :delete
 
 hr
 h2 Comments
@@ -10,4 +14,4 @@ hr
   = f.text_area :content, placeholder: "Add a comment"
   = f.submit "Add Comment"
 ul
-  = render(partial: 'comments/comment', collection: @post.comments)
+  = render(partial: 'comments/comment', collection: @post.comments, object: @author)

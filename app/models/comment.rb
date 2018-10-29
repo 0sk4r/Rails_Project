@@ -1,5 +1,5 @@
 class Comment < ApplicationRecord
   belongs_to :commented_by, polymorphic: true
-  has_many :comments, as: :commented_by
+  has_many :comments, as: :commented_by, dependent: :delete_all
   belongs_to :author
 end
