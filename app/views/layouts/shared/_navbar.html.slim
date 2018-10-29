@@ -4,7 +4,7 @@ nav
     ul#nav-mobile.right.hide-on-med-and-down
       li.nav-item
         - if !author_signed_in?
-          a href=new_user_session_path Sign in
+          a href=new_author_session_path Sign in
 
         - if author_signed_in?
           a data-method='delete' href=destroy_user_session_path Logout

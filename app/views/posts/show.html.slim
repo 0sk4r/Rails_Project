@@ -16,9 +16,10 @@ hr
 h3 Comments
 hr
 
-div.row
+div.row.comment-form
   = form_for [@post, Comment.new] do |f|
-    = f.text_area :content, placeholder: "Add a comment", class: "materialize-textarea"
+    = f.label :content, 'Comment'
+    = f.text_area :content, placeholder: "Add a comment", class: "materialize-textarea", label: "Comment"
     = f.submit "Add Comment", class: "a waves-effect waves-light btn"
 
 div

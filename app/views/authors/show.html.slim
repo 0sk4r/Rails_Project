@@ -1,6 +1,15 @@
-h1= @author.nick
+div.row
+  h1= @author.nick
 
 - @posts.each do |post|
-  p
-    a href=post_path(post)
-      = post.title
+  div.row.post.z-depth-4
+    div.row
+      h4
+        a href=post_path(post)
+          = post.title
+      p
+        | Submitted #{time_ago_in_words(post.created_at)} ago by
+        a href=author_path(post.author)
+          =post.author.nick
+    div.row
+      p= post.content

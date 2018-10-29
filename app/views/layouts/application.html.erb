@@ -14,9 +14,12 @@
   <%= render partial: 'layouts/shared/navbar' %>
 
   <div class="container">
-    <div>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+    <div class="row card green">
+        <h5 class="notice"><%= notice %></h5>
+    </div>
+
+    <div class="row card red darken-1">
+      <h5 class="alert"><%= alert %></h5>
     </div>
     <%= yield %>
   </div>
