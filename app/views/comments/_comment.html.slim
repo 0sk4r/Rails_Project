@@ -1,13 +1,17 @@
-li
+div.row.post.z-depth-4
   p= comment.content
-  | \-
-  small
-    | Submitted #{time_ago_in_words(comment.created_at)} ago by #{comment.author_id}
-    - if author_signed_in? && current_author.id == @author.id
-      = link_to "delete", comment_path(comment), :method => :delete
-  = form_for [comment, Comment.new] do |f|
-    = f.text_area :content, placeholder: "Add a Reply"
-    br/
-    = f.submit "Reply"
+
+  div.row
+    p
+      | Submitted #{time_ago_in_words(@post.created_at)} ago by
+      a href=author_path(@post.author)
+        =@post.author.nick
+      - if author_signed_in? && current_author.id == @author.id
+        = link_to " delete comment", comment_path(comment), :method => :delete
+
+  div.row
+    = form_for [@post, Comment.new] do |f|
+      = f.text_area :content, placeholder: "Add a comment", class: "materialize-textarea"
+      = f.submit "Reply", class: "a waves-effect waves-light btn"
   ul
     = render(partial: 'comments/comment', collection: comment.comments, object: @author)

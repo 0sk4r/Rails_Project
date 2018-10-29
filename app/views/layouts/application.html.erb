@@ -10,8 +10,15 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
+  <%= render partial: 'layouts/shared/navbar' %>
+
+  <div class="container">
+    <div>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
     <%= yield %>
+  </div>
   </body>
 </html>

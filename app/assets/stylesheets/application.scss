@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+@import "materialize";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+.post {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left:  20px;
+  padding-right: 20px;
+  background: #EFEFEF;
+  margin-top: 10px;
+}
