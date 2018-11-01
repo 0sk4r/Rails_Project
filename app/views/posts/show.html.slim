@@ -1,0 +1,26 @@
+div.row.post.z-depth-4
+  div.row
+    h1= @post.title
+    p
+      | Submitted #{time_ago_in_words(@post.created_at)} ago by
+      a href=author_path(@post.author)
+        =@post.author.nick
+  div.row
+    p= @post.content
+
+  - if author_signed_in? && current_author.id == @author.id
+    a data-method="delete" href=post_path(@post)
+      i.small.material-icons delete
+
+hr
+h3 Comments
+hr
+
+div.row.comment-form
+  = form_for [@post, Comment.new] do |f|
+    = f.label :content, 'Comment'
+    = f.text_area :content, placeholder: "Add a comment", class: "materialize-textarea", label: "Comment"
+    = f.submit "Add Comment", class: "a waves-effect waves-light btn"
+
+div
+  = render(partial: 'comments/comment', collection: @post.comments, object: @author)

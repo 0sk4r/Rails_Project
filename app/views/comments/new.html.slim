@@ -1,0 +1,10 @@
+h1 Nowy komentarz
+
+= form_for @comment
+  = hidden_field :post_id
+
+  .form-group
+    = text_area :content, rows: 10, class: 'form-control'
+
+  .form-group
+    = submit 'Zapisz', class: 'btn btn-primary'
