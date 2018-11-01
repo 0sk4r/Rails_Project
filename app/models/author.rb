@@ -7,4 +7,9 @@ class Author < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts
+
+  after_create :send_email
+  def send_email
+    WelcomeMailer.welcome_author(self).deliver
+  end
 end
