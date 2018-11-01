@@ -2,18 +2,17 @@
 
 Rails.application.routes.draw do
   devise_for :authors
-  devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
   root to: 'posts#index'
 
-  resources :posts do
-    resources :comments
+  resources :posts, only: [:index, :show, :create, :new, :destroy] do
+    resources :comments, only: [:show, :create, :new, :destroy]
   end
 
-  resources :comments do
-    resources :comments
+  resources :comments, only: [:show, :create, :new, :destroy] do
+    resources :comments, only: [:show, :create, :new, :destroy]
   end
 
   resources :authors

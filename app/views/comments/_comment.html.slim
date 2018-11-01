@@ -6,7 +6,7 @@ div.row.post.z-depth-4
       | Submitted #{time_ago_in_words(@post.created_at)} ago by
       a href=author_path(comment.author)
         = comment.author.nick
-      - if author_signed_in? && current_author.id == @author.id
+      - if current_author&.id == @author.id
         = link_to " delete comment", comment_path(comment), :method => :delete
 
   div.row
