@@ -26,7 +26,7 @@ class PostsController < ApplicationController
                        @post.errors.full_messages.join('. ')
                      end
 
-    redirect_to '/'
+    redirect_to post_path(@post)
   end
 
   def destroy
