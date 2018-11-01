@@ -8,8 +8,17 @@ class Author < ApplicationRecord
 
   has_many :posts
 
-  after_create :send_email
-  def send_email
-    WelcomeMailer.welcome_author(self).deliver
+  after_create :send_welcome_email
+  after_update :send_notify_email
+
+  private
+
+  def send_welcome_email
+    AuthorMailer.welcome_author(self).deliver
   end
+
+  def send_notify_email
+    AuthorMailer.notify_author(self).deliver
+  end
+
 end
