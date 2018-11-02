@@ -8,6 +8,9 @@ div
         = f.label :title, 'Title'
         = f.text_field :title, placeholder: "Title"
 
+      .form-gorup
+        = f.label :thumbnail, 'Thumbnail'
+        = f.file_field :thumbnail, class: "input-field"
       .form-group
         = f.label :content, 'Content'
         = f.text_area :content, rows: 10, placeholder: "Content", class: "materialize-textarea"
