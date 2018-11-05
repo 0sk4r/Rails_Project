@@ -7,6 +7,8 @@ class Author < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts
+  has_many :votes
+  has_many :liked_posts, through: :votes
 
   after_create :send_welcome_email
   after_update :send_notify_email

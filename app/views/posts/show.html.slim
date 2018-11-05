@@ -11,6 +11,11 @@ div.row.post.z-depth-4
   - if author_signed_in? && current_author.id == @author.id
     a data-method="delete" href=post_path(@post)
       i.small.material-icons delete
+  div.row
+  a href=new_vote_path(@post, current_author.id, 0)
+    | Upvote
+  a href=new_vote_path(@post, current_author.id, 1)
+    | Downvote
 
 hr
 h3 Comments
