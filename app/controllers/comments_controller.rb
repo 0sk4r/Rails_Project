@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
                      else
                        @comment.errors.full_messages.join('. ')
                      end
-    redirect_to '/'
+    redirect_back fallback_location: '/'
   end
 
   def destroy
@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
                      else
                        comment.errors.full_messages.join('. ')
                      end
-    redirect_to '/'
+    redirect_back fallback_location: '/'
   end
 
   private
@@ -37,6 +37,7 @@ class CommentsController < ApplicationController
 
   def find_commented_by
     return Comment.find_by_id(params[:comment_id]) if params[:comment_id]
+
     Post.find_by_id(params[:post_id]) if params[:post_id]
   end
 end

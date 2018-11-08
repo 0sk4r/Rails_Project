@@ -14,3 +14,10 @@
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
+
+
+$(document).ready(function(){
+    $("button").click(function(){
+        $(`#${$(this).data("id")}`).toggle();
+    });
+});

@@ -2,16 +2,19 @@ div.row.post.z-depth-4
   p= comment.content
 
   div.row
-    p
-      | Submitted #{time_ago_in_words(@post.created_at)} ago by
+    small
+      | Submitted #{time_ago_in_words(comment.created_at)} ago by
       a href=author_path(comment.author)
         = comment.author.nick
+  div.row.menu
+    small
       - if current_author&.id == @author.id
         = link_to " delete comment", comment_path(comment), :method => :delete
+      button data-id="#{comment.id}" class="a waves-effect waves-light btn"  Reply
 
-  div.row
+  div.row.reply-form id="#{comment.id}"
     = form_for [comment, Comment.new] do |f|
       = f.text_area :content, placeholder: "Add a comment", class: "materialize-textarea"
-      = f.submit "Reply", class: "a waves-effect waves-light btn"
+      = f.submit "Send", class: "a waves-effect waves-light btn"
   ul
     = render(partial: 'comments/comment', collection: comment.comments, object: @author)

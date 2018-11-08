@@ -5,4 +5,5 @@ class AuthorsController < ApplicationController
     @author = Author.find(params[:id])
     @posts = @author.posts.all
   end
+
 end

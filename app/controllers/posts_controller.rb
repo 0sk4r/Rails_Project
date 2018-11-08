@@ -19,6 +19,7 @@ class PostsController < ApplicationController
     @post = Post.new(
       params.require(:post).permit(:content, :title).merge(author_id: current_author.id)
     )
+    @post.thumbnail.attach(params[:post][:thumbnail])
 
     flash[:notice] = if @post.save
                        'Post dodany'
@@ -26,7 +27,7 @@ class PostsController < ApplicationController
                        @post.errors.full_messages.join('. ')
                      end
 
-    redirect_to '/'
+    redirect_to post_path(@post)
   end
 
   def destroy

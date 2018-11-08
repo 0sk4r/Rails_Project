@@ -1,12 +1,12 @@
 # Ruby on Rails Reddit like app
 
-#Heroku
+# Heroku
 
 Stable: `https://pure-journey-89170.herokuapp.com/`
 
 Staging: `https://radiant-springs-18790.herokuapp.com/`
 
-#Setup
+# Setup
 
 ```console
 git clone https://github.com/0sk4r/Rails_Project.git
@@ -19,5 +19,5 @@ bin/setup
 
 rails s
 
-#Go to localhost:3000/
+# Go to localhost:3000/
 ```
