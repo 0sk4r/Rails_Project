@@ -18,6 +18,7 @@ div.row.post.z-depth-4
       | Upvote
     a href=new_vote_path(@post, current_author.id, 1)
       | Downvote
+    =link_to "Reminder", controller: "posts", action: "notify", id: @post.id
 
 hr
 h3 Comments

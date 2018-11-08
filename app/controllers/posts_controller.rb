@@ -41,4 +41,13 @@ class PostsController < ApplicationController
 
     redirect_to '/'
   end
+
+  def notify
+    post_id = params[:id]
+    author_id = current_author.id
+
+    NotificationWorker.perform_in(1.second, author_id: author_id, post_id: post_id)
+
+    redirect_back fallback_location: '/'
+  end
 end
