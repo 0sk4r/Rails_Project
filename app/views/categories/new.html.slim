@@ -1,0 +1,7 @@
+h1 New category
+= form_for @category do |f|
+  .form-group
+    = f.text_area :name, class: 'form-control'
+
+  .form-group
+    = f.submit 'Zapisz', class: 'btn btn-primary'

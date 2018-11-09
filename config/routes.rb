@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     resources :comments, only: [:show, :create, :new, :destroy]
   end
 
+  resources :categories
+
   resources :votes
 
   resources :authors

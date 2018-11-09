@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   before_action :authenticate_author!, only: %i[new create]
   def new
     @post = Post.new
+    @categories = Category.all.map{ |cat| [cat.name, cat.id]}
   end
 
   def show
@@ -17,8 +18,9 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(
-      params.require(:post).permit(:content, :title).merge(author_id: current_author.id)
+      params.require(:post).permit(:content, :title, :category_id).merge(author_id: current_author.id)
     )
+
     @post.thumbnail.attach(params[:post][:thumbnail])
 
     flash[:notice] = if @post.save
