@@ -14,6 +14,15 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @author = Author.find(@post.author_id)
+    @votes = Vote.where(post_id: params[:id])
+    @score = 0
+    @votes.each do |vote|
+      if vote.vote_type == 0
+        @score += 1
+      else
+        @score -= 1
+      end
+    end
   end
 
   def create

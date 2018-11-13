@@ -1,6 +1,7 @@
 div.row.post.z-depth-4
   div.row
     h1= @post.title
+    =@score
     p
       | Submitted #{time_ago_in_words(@post.created_at)} ago by
       a href=author_path(@post.author)
@@ -14,9 +15,9 @@ div.row.post.z-depth-4
         i.small.material-icons delete
 
     div.row
-    a href=new_vote_path(@post, current_author.id, 0)
+    a href=new_vote_path(post_id: @post.id, vote_type: 0)
       | Upvote
-    a href=new_vote_path(@post, current_author.id, 1)
+    a href=new_vote_path(post_id: @post.id, vote_type: 1)
       | Downvote
     =link_to "Reminder", controller: "posts", action: "notify", id: @post.id
 
