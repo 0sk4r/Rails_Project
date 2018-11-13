@@ -3,7 +3,11 @@
 class PostsController < ApplicationController
   def index
     top_post_id = Post.joins(:votes).group(:post_id).count.sort.to_h.first[0]
-    @top_post = Post.find(top_post_id)
+    @top_post = if top_post_id.nil?
+                  Post.find(top_post_id)
+                else
+                  Post.last
+                end
     @posts = Post.where.not(id: top_post_id)
 
   end
