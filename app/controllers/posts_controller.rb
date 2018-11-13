@@ -2,9 +2,9 @@
 
 class PostsController < ApplicationController
   def index
-    top_post_id = Post.joins(:votes).group(:post_id).count.sort.to_h.first[0]
+    top_post_id = Post.joins(:votes).group(:post_id).count.sort.to_h
     @top_post = if top_post_id.nil?
-                  Post.find(top_post_id)
+                  Post.find(top_post_id.first[0])
                 else
                   Post.last
                 end
