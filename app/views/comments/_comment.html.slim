@@ -8,7 +8,7 @@ div.row.post.z-depth-4
         = comment.author.nick
   div.row.menu
     small
-      - if current_author&.id == @author.id
+      - if current_author&.id == @post.author.id
         = link_to " delete comment", comment_path(comment), :method => :delete
       button data-id="#{comment.id}" class="a waves-effect waves-light btn"  Reply
 
