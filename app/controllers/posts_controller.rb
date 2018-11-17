@@ -2,9 +2,10 @@
 
 class PostsController < ApplicationController
   def index
-    top_post_id = Post.joins(:votes).group(:post_id).count.sort.to_h
-    @top_post = if top_post_id.nil?
-                  Post.find(top_post_id.first[0])
+    # top_post_id = Post.joins(:votes).group(:post_id).count.sort.to_h
+    top_post_id = Post.joins(:votes).group(:post_id, :id).select('posts.id, count(post_id) as count').order('count asc').last.id
+    @top_post = if !top_post_id.nil?
+                  Post.find(top_post_id)
                 else
                   Post.last
                 end
@@ -20,16 +21,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @author = Author.find(@post.author_id)
-    @votes = Vote.where(post_id: params[:id])
-    @score = 0
-    @votes.each do |vote|
-      if vote.vote_type == 0
-        @score += 1
-      else
-        @score -= 1
-      end
-    end
+    @score = score
   end
 
   def create
@@ -64,8 +56,22 @@ class PostsController < ApplicationController
     post_id = params[:id]
     author_id = current_author.id
 
-    NotificationWorker.perform_in(5.minute, author_id: author_id, post_id: post_id)
+    NotificationWorker.perform_in(5.minute,author_id, post_id)
 
     redirect_back fallback_location: '/'
   end
+
+  def score
+    votes = Vote.where(post_id: params[:id])
+    result = 0
+    votes.each do |vote|
+      if vote.vote_type == 0
+        result += 1
+      else
+        result -= 1
+      end
+    end
+    result
+  end
+
 end

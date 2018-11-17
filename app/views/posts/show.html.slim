@@ -11,7 +11,7 @@ div.row.post.z-depth-4
 
   div.row
   - if author_signed_in?
-    -if current_author.id == @author.id
+    -if current_author.id == @post.author.id
       a data-method="delete" href=post_path(@post)
         i.small.material-icons delete
     a href=new_vote_path(post_id: @post.id, vote_type: 0)
@@ -31,4 +31,4 @@ div.row.comment-form
     = f.submit "Add Comment", class: "a waves-effect waves-light btn"
 
 div
-  = render(partial: 'comments/comment', collection: @post.comments, object: @author)
+  = render(partial: 'comments/comment', collection: @post.comments, object: @post.author)
