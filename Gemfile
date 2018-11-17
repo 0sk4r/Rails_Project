@@ -10,6 +10,8 @@ gem 'devise'
 gem 'materialize-sass'
 gem 'slim-rails'
 gem 'mini_magick'
+gem 'sidekiq'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'

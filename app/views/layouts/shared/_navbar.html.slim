@@ -1,12 +1,18 @@
 nav
   .nav-wrapper
     a.brand-logo href="/"  RailsProject
+
     ul#nav-mobile.right.hide-on-med-and-down
+      li.nav-item
+        =link_to("Kategorie", controller: "/categories", action: "index")
+
       - if !author_signed_in?
         li.nav-item
-        a href=new_author_session_path Sign in
+          a href=new_author_session_path Sign in
 
       - if author_signed_in?
+        li.nav-item
+          a href=new_category_path Nowa kategoria
         li.nav-item
           a href=edit_author_registration_path Zmień hasło
         li.nav-item

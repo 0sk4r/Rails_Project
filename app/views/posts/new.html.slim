@@ -3,12 +3,14 @@ div
     h3 Add post
 
   div.row
-    = form_for @post do |f|
+    = form_for [@category, @post] do |f|
       .form-group
         = f.label :title, 'Title'
         = f.text_field :title, placeholder: "Title"
-
-      .form-gorup
+      .form-group
+        = f.label :category_id
+        = f.select(:category_id, options_for_select(@categories))
+      .form-group
         = f.label :thumbnail, 'Thumbnail'
         = f.file_field :thumbnail, class: "input-field"
       .form-group

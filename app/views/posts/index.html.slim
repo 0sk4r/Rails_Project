@@ -1,3 +1,24 @@
+h1 Most voted post
+div.row.post.z-depth-4
+  div.col.s2
+    - if @top_post.thumbnail.attached?
+      / img src=url_for(post.thumbnail) class="circle responsive-img"
+      =image_tag @top_post.thumbnail.variant(resize: '150x150'), class: "circle responsive-img"
+  div.col.s10
+    div.row
+      h4
+        a href=post_path(@top_post)
+          = @top_post.title
+      p
+        | Submitted #{time_ago_in_words(@top_post.created_at)} ago by
+        a href=author_path(@top_post.author)
+          =@top_post.author.nick
+    div.row
+      p= @top_post.content
+
+br
+hr
+br
 - @posts.each do |post|
 
   div.row.post.z-depth-4

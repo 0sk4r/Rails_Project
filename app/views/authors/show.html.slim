@@ -13,3 +13,14 @@ div.row
           =post.author.nick
     div.row
       p= post.content
+
+h2 Vote actions:
+- @votes.each do |vote|
+  div.row.post.z-depth-4
+    a href=post_path(vote.post)
+      =vote.post.title
+    -if vote.vote_type == 0
+      =" +"
+    -if vote.vote_type == 1
+      =" -"
+  div.row
