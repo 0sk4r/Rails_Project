@@ -22,5 +22,4 @@ class Author < ApplicationRecord
   def send_notify_email
     AuthorMailer.notify_author(self).deliver
   end
-
 end

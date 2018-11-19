@@ -2,7 +2,6 @@ require 'rails_helper'
 RSpec.describe Author do
   let(:author) { FactoryBot.create :author }
 
-
   it 'should return email' do
     expect(author.email).to eq('user1@test.com')
   end

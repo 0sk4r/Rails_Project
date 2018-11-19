@@ -3,6 +3,7 @@ AllCops:
   - 'db/schema.rb'
   - 'bin/*'
   - 'vendor/bundle/**/*'
+  - 'spec/rails_helper.rb'
   TargetRubyVersion: 2.5
 
 LineLength:
@@ -12,6 +13,9 @@ Documentation:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/AbcSize:
   Enabled: false
 
 Style/AsciiComments:

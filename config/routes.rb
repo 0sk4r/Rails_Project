@@ -12,12 +12,12 @@ Rails.application.routes.draw do
 
   get '/notify/:id', to: 'posts#notify'
 
-  resources :posts, only: [:index, :show, :create, :new, :destroy] do
-    resources :comments, only: [:show, :create, :new, :destroy]
+  resources :posts, only: %i[index show create new destroy] do
+    resources :comments, only: %i[show create new destroy]
   end
 
-  resources :comments, only: [:show, :create, :new, :destroy] do
-    resources :comments, only: [:show, :create, :new, :destroy]
+  resources :comments, only: %i[show create new destroy] do
+    resources :comments, only: %i[show create new destroy]
   end
 
   resources :categories

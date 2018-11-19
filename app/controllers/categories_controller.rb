@@ -13,7 +13,6 @@ class CategoriesController < ApplicationController
                      end
 
     redirect_to '/'
-
   end
 
   def show

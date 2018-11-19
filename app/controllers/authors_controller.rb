@@ -6,5 +6,4 @@ class AuthorsController < ApplicationController
     @posts = @author.posts.all
     @votes = @author.votes.all
   end
-
 end
