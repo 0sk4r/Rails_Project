@@ -16,9 +16,8 @@ RSpec.describe PostsController do
   end
 
   describe 'GET show' do
-
     it 'post content' do
-      get :show, :params => {:id => post.id}
+      get :show, params: { id: post.id }
       expect(assigns(:post)).to eq(post)
     end
   end
