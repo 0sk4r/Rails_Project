@@ -54,7 +54,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'shoulda-matchers', '4.0.0.rc1'
   gem 'rails-controller-testing' # If you are using Rails 5.x
-
+  gem 'rubocop', '~> 0.60.0', require: false
   gem 'faker'
 
 end
