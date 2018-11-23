@@ -2,14 +2,7 @@
 
 class PostsController < ApplicationController
   def index
-    # top_post_id = Post.joins(:votes).group(:post_id).count.sort.to_h
-    top_post_id = Post.joins(:votes).group(:post_id, :id).select('posts.id, count(post_id) as count').order('count asc').last
-    @top_post = if !top_post_id.nil?
-                  Post.find(top_post_id.id)
-                else
-                  Post.last
-                end
-    @posts = Post.where.not(id: top_post_id)
+    @top_post, @posts = ListPosts.run!
   end
 
   before_action :authenticate_author!, only: %i[new create]
