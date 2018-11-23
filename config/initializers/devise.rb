@@ -21,11 +21,11 @@ Devise.setup do |config|
   config.mailer_sender = 'test@test.pl'
 
   ActionMailer::Base.smtp_settings = {
-      :address          => "smtp.sendgrid.net",
-      :port             => "25",
-      :authentication   => :plain,
-      :user_name        => 'apikey',
-      :password         => Rails.application.credentials.sendgrid[:api_key]
+    address: 'smtp.sendgrid.net',
+    port: '25',
+    authentication: :plain,
+    user_name: 'apikey',
+    password: Rails.application.credentials.sendgrid[:api_key]
   }
 
   # Configure the class responsible to send e-mails.
