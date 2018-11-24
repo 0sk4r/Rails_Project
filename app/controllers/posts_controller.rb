@@ -17,9 +17,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(
-      params.require(:post).permit(:content, :title, :category_id).merge(author_id: current_author.id)
-    )
+    @post = Post.new(post_params)
 
     @post.thumbnail.attach(params[:post][:thumbnail])
 
@@ -64,5 +62,9 @@ class PostsController < ApplicationController
       end
     end
     result
+  end
+
+  def post_params
+    params.require(:post).permit(:content, :title, :category_id).merge(author_id: current_author.id)
   end
 end
