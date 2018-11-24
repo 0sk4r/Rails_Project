@@ -1,0 +1,28 @@
+div.row.post.z-depth-4
+  div.row
+    div.col.s2
+      - if post.thumbnail.attached?
+        / img src=url_for(post.thumbnail) class="circle responsive-img"
+        = image_tag post.thumbnail.variant(resize: '150x150'), class: "circle responsive-img"
+    div.col.s10
+      h1
+        a href=post_path(post)
+          = post.title
+      p Score: #{post.score}
+      p
+        | Submitted #{time_ago_in_words(post.created_at)} ago by
+        a href=author_path(post.author)
+          =post.author.nick
+      div.row
+        p= post.content
+
+      div.row
+      - if author_signed_in?
+        -if current_author.id == post.author.id
+          a data-method="delete" href=post_path(post)
+            i.small.material-icons delete
+        a href=new_vote_path(post_id: post.id, vote_type: 0)
+          i.small.material-icons thumb_up
+        a href=new_vote_path(post_id: post.id, vote_type: 1)
+          i.small.material-icons thumb_down
+        =link_to "Reminder", controller: "posts", action: "notify", id: post.id
