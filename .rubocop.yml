@@ -16,7 +16,7 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 
 Metrics/AbcSize:
-  Enabled: false
+  Enabled: true
 
 Style/AsciiComments:
   Enabled: false
