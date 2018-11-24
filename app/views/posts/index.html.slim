@@ -1,10 +1,10 @@
 h1 Most voted post
-=render(partial: 'posts/post', collection: [@top_post])
+=render(partial: 'posts/post', object: @top_post)
 br
 hr
 br
 - @posts.each do |post|
-  =render(partial: 'posts/post', collection: [post])
+  =render(partial: 'posts/post', object: post)
 
 .fixed-action-btn
   a.btn-floating.btn-large.red.pulse href=new_post_path
