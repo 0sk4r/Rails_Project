@@ -11,4 +11,17 @@ class Post < ApplicationRecord
 
   validates_presence_of :content
   validates_presence_of :title
+
+  def score
+    votes = self.votes
+    result = 0
+    votes.each do |vote|
+      if vote.vote_type.zero?
+        result += 1
+      else
+        result -= 1
+      end
+    end
+    result
+  end
 end

@@ -1,7 +1,7 @@
 div.row.post.z-depth-4
   div.row
     h1= @post.title
-    p Score: #{@score}
+    p Score: #{@post.score}
     p
       | Submitted #{time_ago_in_words(@post.created_at)} ago by
       a href=author_path(@post.author)

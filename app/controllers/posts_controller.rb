@@ -13,7 +13,6 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @score = score
   end
 
   def create
@@ -49,19 +48,6 @@ class PostsController < ApplicationController
     NotificationWorker.perform_in(5.minute, author_id, post_id)
 
     redirect_back fallback_location: '/'
-  end
-
-  def score
-    votes = Vote.where(post_id: params[:id])
-    result = 0
-    votes.each do |vote|
-      if vote.vote_type.zero?
-        result += 1
-      else
-        result -= 1
-      end
-    end
-    result
   end
 
   def post_params
