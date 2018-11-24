@@ -10,6 +10,6 @@ class ListPosts < ActiveInteraction::Base
 
     posts = Post.where.not(id: top_post)
 
-    return top_post, posts
+    [top_post, posts]
   end
 end
