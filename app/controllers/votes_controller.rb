@@ -19,6 +19,6 @@ class VotesController < ApplicationController
   private
 
   def vote_params
-    params.permit(:post_id, :vote_type).merge(author_id: current_author.id)
+    params.permit(:voting_object, :vote_type).merge(author_id: current_author.id)
   end
 end

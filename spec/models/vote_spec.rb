@@ -7,8 +7,4 @@ RSpec.describe Vote do
   it 'belongs to author' do
     is_expected.to belong_to(:author)
   end
-
-  it 'belongs to post' do
-    is_expected.to belong_to(:post)
-  end
 end

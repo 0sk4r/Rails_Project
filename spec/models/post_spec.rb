@@ -15,6 +15,9 @@ RSpec.describe Post do
     is_expected.to validate_presence_of(:title)
   end
 
+  it 'has many votes' do
+    is_expected.to have_many(:votes)
+  end
   context 'post with one positive vote' do
     let!(:author) { FactoryBot.create(:author, email: 'user114@test.com') }
     let!(:vote) { Vote.create(author_id: author.id, post_id: post.id, vote_type: 0) }
