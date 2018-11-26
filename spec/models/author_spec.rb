@@ -14,6 +14,5 @@ RSpec.describe Author do
     author.update(password: 'test')
 
     expect(ActionMailer::Base.deliveries.last.to).to eq([author.email])
-
   end
 end
