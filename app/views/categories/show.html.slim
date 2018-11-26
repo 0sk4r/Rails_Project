@@ -2,22 +2,7 @@ h1 =@category.name
 br
 
 - @posts.each do |post|
-  div.row.post.z-depth-4
-    div.col.s2
-      - if post.thumbnail.attached?
-        / img src=url_for(post.thumbnail) class="circle responsive-img"
-        =image_tag post.thumbnail.variant(resize: '150x150'), class: "circle responsive-img"
-    div.col.s10
-      div.row
-        h4
-          a href=post_path(post)
-            = post.title
-        p
-          | Submitted #{time_ago_in_words(post.created_at)} ago by
-          a href=author_path(post.author)
-            =post.author.nick
-      div.row
-        p= post.content
+  =render(partial: 'posts/post', object: post)
 
 .fixed-action-btn
   a.btn-floating.btn-large.red.pulse href=new_post_path(@category)
