@@ -7,6 +7,8 @@ div.row.post.z-depth-4
       a href=author_path(comment.author)
         = comment.author.nick
   div.row.menu
+    a href=new_vote_path(voting_object: comment.id, vote_type: 0)
+      i.small.material-icons thumb_up
     small
       - if current_author&.id == @post.author.id
         = link_to " delete comment", comment_path(comment), :method => :delete

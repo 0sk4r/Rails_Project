@@ -102,15 +102,15 @@ ActiveRecord::Schema.define(version: 2018_11_09_102147) do
 
   create_table "votes", force: :cascade do |t|
     t.bigint "author_id"
-    t.bigint "post_id"
+    t.string "voting_object_type"
+    t.bigint "voting_object_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "vote_type"
     t.index ["author_id"], name: "index_votes_on_author_id"
-    t.index ["post_id"], name: "index_votes_on_post_id"
+    t.index ["voting_object_type", "voting_object_id"], name: "index_votes_on_voting_object_type_and_voting_object_id"
   end
 
   add_foreign_key "posts", "categories"
   add_foreign_key "votes", "authors"
-  add_foreign_key "votes", "posts"
 end
