@@ -30,13 +30,13 @@ RSpec.describe ListPosts do
 
         context 'post with vote' do
           let!(:author) { FactoryBot.create(:author, email: 'user11@test.com') }
-          let!(:vote) { Vote.create(author_id: author.id, voting_object_id: post1.id, voting_object_type: 'Post') }
+          let!(:vote) { Vote.create(author_id: author.id, voting_object_id: post1.id, voting_object_type: post1.class, vote_type: 0) }
 
-          it {
+          it do
             top_post, post = ListPosts.run!
             expect(top_post).to eq(post1)
             expect(post.last).to eq(post2)
-          }
+          end
         end
       end
     end

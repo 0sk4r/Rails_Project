@@ -1,6 +1,6 @@
 require 'rails_helper'
 RSpec.describe Post do
-  let(:post) { FactoryBot.create :post }
+  let!(:post) { FactoryBot.create :post }
 
   subject { post }
   it 'has author' do
@@ -20,7 +20,7 @@ RSpec.describe Post do
   end
   context 'post with one positive vote' do
     let!(:author) { FactoryBot.create(:author, email: 'user114@test.com') }
-    let!(:vote) { Vote.create(author_id: author.id, post_id: post.id, vote_type: 0) }
+    let!(:vote) { Vote.create(author_id: author.id, voting_object_id: post.id, voting_object_type: post.class, vote_type: 0) }
 
     subject { post.score }
 
@@ -30,7 +30,7 @@ RSpec.describe Post do
 
     context 'post with one negative and one positive vote' do
       let!(:author2) { FactoryBot.create(:author, email: 'user123@test.com') }
-      let!(:vote2) { Vote.create(author_id: author2.id, post_id: post.id, vote_type: 1) }
+      let!(:vote2) { Vote.create(author_id: author2.id, voting_object_id: post.id, voting_object_type: post.class, vote_type: 1) }
 
       it {
         is_expected.to eq(0)
