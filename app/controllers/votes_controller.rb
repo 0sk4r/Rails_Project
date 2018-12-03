@@ -6,6 +6,7 @@ class VotesController < ApplicationController
   before_action :authenticate_author!
 
   def new
+    # binding.pry
     @vote = Vote.new(vote_params)
     if @vote.save
       flash[:notice] = 'Upvoted' if @vote.vote_type.zero?
@@ -19,6 +20,6 @@ class VotesController < ApplicationController
   private
 
   def vote_params
-    params.permit(:voting_object, :vote_type).merge(author_id: current_author.id)
+    params.permit(:voting_object_type, :voting_object_id, :vote_type).merge(author_id: current_author.id)
   end
 end

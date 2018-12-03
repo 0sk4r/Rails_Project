@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   has_many :comments, as: :commented_by, dependent: :delete_all
   has_one_attached :thumbnail
   has_many :votes, as: :voting_object, dependent: :delete_all
-  has_many :voters, as: :voting_object, through: :votes
+  # has_many :voters, through: :votes
 
   validates_presence_of :content
   validates_presence_of :title
