@@ -9,4 +9,10 @@ RSpec.describe Author do
   it 'should encrypt password' do
     expect(author.encrypted_password).to_not eq('password')
   end
+
+  it 'should notify after password update' do
+    author.update(password: 'test')
+
+    expect(ActionMailer::Base.deliveries.last.to).to eq([author.email])
+  end
 end
