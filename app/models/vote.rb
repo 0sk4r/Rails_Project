@@ -1,5 +1,5 @@
 class Vote < ApplicationRecord
-  validates :author_id, uniqueness: { scope: %i[voting_object_id voting_object_type] }
+  validates :author_id, uniqueness: { scope: :voting_object_id }
   belongs_to :author
   belongs_to :voting_object, polymorphic: true
 

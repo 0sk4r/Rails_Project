@@ -17,8 +17,8 @@ div.row
 h2 Vote actions:
 - @votes.each do |vote|
   div.row.post.z-depth-4
-    a href=post_path(vote.post)
-      =vote.post.title
+    a href=post_path(vote.voting_object)
+      =vote.voting_object
     -if vote.vote_type == 0
       =" +"
     -if vote.vote_type == 1
