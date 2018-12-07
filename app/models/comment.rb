@@ -6,4 +6,17 @@ class Comment < ApplicationRecord
   belongs_to :author
   has_many :votes, as: :voting_object, dependent: :delete_all
   validates_presence_of :content
+
+  def score
+    votes = self.votes
+    result = 0
+    votes.each do |vote|
+      if vote.vote_type.zero?
+        result += 1
+      else
+        result -= 1
+      end
+    end
+    result
+  end
 end
