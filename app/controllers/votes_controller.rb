@@ -6,8 +6,13 @@ class VotesController < ApplicationController
   before_action :authenticate_author!
 
   def new
-    # binding.pry
-    @vote = Vote.new(vote_params)
+    @vote = Vote.find_or_initialize_by(author_id: current_author.id, voting_object_id: params[:voting_object_id], voting_object_type: params[:voting_object_type])
+    if @vote.vote_type == params[:vote_type].to_i
+      Vote.destroy(@vote.id)
+    else
+      @vote.vote_type = params[:vote_type]
+    end
+
     if @vote.save
       flash[:notice] = 'Upvoted' if @vote.vote_type.zero?
       flash[:notice] = 'Downvoted' if @vote.vote_type == 1
