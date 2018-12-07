@@ -1,5 +1,4 @@
 module Api
-
   class AuthorController < ApplicationController
     def index
       provider = AuthorsProvider.new(params[:key])

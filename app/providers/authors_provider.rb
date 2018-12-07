@@ -1,5 +1,4 @@
 class AuthorsProvider
-
   attr_reader :results
 
   def initialize(key)
