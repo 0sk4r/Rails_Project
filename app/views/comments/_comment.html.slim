@@ -6,6 +6,7 @@ div.row.post.z-depth-4
       | Submitted #{time_ago_in_words(comment.created_at)} ago by
       a href=author_path(comment.author)
         = comment.author.nick
+  p Score: #{comment.score}
   div.row.menu
     a href=new_vote_path(voting_object_id: comment.id, voting_object_type: comment.class, vote_type: 0)
       i.small.material-icons thumb_up
