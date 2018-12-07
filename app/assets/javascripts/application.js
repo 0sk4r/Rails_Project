@@ -15,8 +15,22 @@
 //= require activestorage
 //= require_tree .
 
-$(document).ready(function(){
-    $("button").click(function(){
+$(document).ready(function () {
+    $("button").click(function () {
         $(`#${$(this).data("id")}`).toggle();
     });
+});
+
+$(function () {
+    $('#post_content').atwho(
+        {
+            at: "@",
+            callbacks: {
+                remoteFilter: function (query, callback) {
+                    $.getJSON("/api/author/", {key: query}, function (data) {
+                        callback(data.map(x => x.nick))
+                    });
+                }
+            }
+        });
 });

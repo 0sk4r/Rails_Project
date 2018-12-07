@@ -1,3 +1,3 @@
 class AuthorSerializer < ActiveModel::Serializer
-  attributes :id, :nick
+  attributes :nick
 end
