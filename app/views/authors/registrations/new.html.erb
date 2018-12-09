@@ -12,6 +12,7 @@
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <span class="helper-text" data-error="Email is already used" data-success="Correct"></span>
   </div>
 
   <div class="field">
@@ -34,3 +35,18 @@
 <div>
 <%= render "authors/shared/links" %>
 </div>
+
+<script>
+    $('#author_email').blur(function() {
+        $('#author_email').removeClass('invalid')
+
+        $.get('/api/author/email_exists', {email: $(this).val()}, function(response) {
+            if(response === true) {
+                $('#author_email').addClass('invalid')
+            }
+            else {
+                $('#author_email').addClass('valid')
+            }
+        })
+    })
+</script>
