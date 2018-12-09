@@ -22,8 +22,8 @@ RSpec.describe Api::AuthorController do
   end
 
   describe 'GET authors list' do
-    subject {get :index, params: {key: nick}}
-    let(:nick) {'ab'}
+    subject { get :index, params: { key: nick } }
+    let(:nick) { 'ab' }
 
     context 'when there is no authors' do
       it do
@@ -32,8 +32,8 @@ RSpec.describe Api::AuthorController do
       end
 
       context 'when there is one matching user' do
-        let!(:author1) { FactoryBot.create(:author, nick: 'abcd')}
-        let!(:author2) { FactoryBot.create(:author, nick: 'cde')}
+        let!(:author1) { FactoryBot.create(:author, nick: 'abcd') }
+        let!(:author2) { FactoryBot.create(:author, nick: 'cde') }
 
         it do
           expect(subject).to be_successful
@@ -42,7 +42,7 @@ RSpec.describe Api::AuthorController do
         end
 
         context 'when there is two matching users' do
-          let!(:author3) { FactoryBot.create(:author, nick: 'abde')}
+          let!(:author3) { FactoryBot.create(:author, nick: 'abde') }
           it do
             expect(subject).to be_successful
             parsed_body = JSON.parse(subject.body)
@@ -52,6 +52,5 @@ RSpec.describe Api::AuthorController do
         end
       end
     end
-
   end
 end
