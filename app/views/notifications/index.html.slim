@@ -1,0 +1,12 @@
+h1 Notifications
+
+- @notifications.each do |notification|
+  div.row.post.z-depth-4
+    div.row
+      h5 User #{notification.sender.nick} mentioned you in
+      p =notification.notification_object.content
+
+
+.fixed-action-btn
+  a.btn-floating.btn-large.red.pulse href=notifications_mark_read_path
+    i.large.material-icons done_all

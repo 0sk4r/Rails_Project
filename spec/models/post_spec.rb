@@ -1,6 +1,6 @@
 require 'rails_helper'
 RSpec.describe Post do
-  let!(:post) { FactoryBot.create :post }
+  let!(:post) { FactoryBot.create(:post, content: 'test @username') }
 
   subject { post }
   it 'has author' do
@@ -36,5 +36,9 @@ RSpec.describe Post do
         is_expected.to eq(0)
       }
     end
+  end
+
+  it 'should return mentioned users' do
+    expect(post.mentions).to eq(['username'])
   end
 end

@@ -26,8 +26,12 @@ Rails.application.routes.draw do
 
   resources :authors
 
+  resources :notifications, only: [:index]
+  get 'notifications/mark_read', to: 'notifications#mark_read'
+
   namespace :api do
     get 'author/email_exists', to: 'author#email_exists'
+    get 'notifications/count', to: 'notifications#count'
     resources :author, only: [:index]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

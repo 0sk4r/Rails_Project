@@ -20,7 +20,7 @@ div.row.post.z-depth-4
 
   div.row.reply-form id="#{comment.id}"
     = form_for [comment, Comment.new] do |f|
-      = f.text_area :content, placeholder: "Add a comment", class: "materialize-textarea"
+      = f.text_area :content, placeholder: "Add a comment", class: "materialize-textarea content"
       = f.submit "Send", class: "a waves-effect waves-light btn"
   ul
     = render(partial: 'comments/comment', collection: comment.comments, object: @author)

@@ -7,7 +7,7 @@ hr
 div.row.comment-form
   = form_for [@post, Comment.new] do |f|
     = f.label :content, 'Comment'
-    = f.text_area :content, placeholder: "Add a comment", class: "materialize-textarea", label: "Comment"
+    = f.text_area :content, placeholder: "Add a comment", class: "materialize-textarea content", label: "Comment"
     = f.submit "Add Comment", class: "a waves-effect waves-light btn"
 
 div

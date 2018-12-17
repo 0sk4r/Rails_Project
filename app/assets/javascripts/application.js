@@ -19,10 +19,14 @@ $(document).ready(function () {
     $("button").click(function () {
         $(`#${$(this).data("id")}`).toggle();
     });
+
+    $.get('/api/notifications/count', function(result) {
+        $('.notification_counter a').text(`Powiadomienia: ${result}`)
+    })
 });
 
 $(function () {
-    $('#post_content').atwho(
+    $('.content').atwho(
         {
             at: "@",
             callbacks: {
@@ -33,4 +37,4 @@ $(function () {
                 }
             }
         });
-});
+})

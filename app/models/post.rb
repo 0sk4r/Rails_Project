@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
+  after_save :notify_users
+
   belongs_to :author
   belongs_to :category
 
@@ -23,5 +25,18 @@ class Post < ApplicationRecord
       end
     end
     result
+  end
+
+  def mentions
+    content.scan(/\@(\w+)/).flatten
+  end
+
+  def notify_users
+    mentions = self.mentions
+
+    mentions.each do |author_nick|
+      author = Author.find_by(nick: author_nick)
+      author.notifications.new(sender_id: self.author.id, notification_object: self).save unless author.nil?
+    end
   end
 end

@@ -11,6 +11,8 @@ nav
           a href=new_author_session_path Sign in
 
       - if author_signed_in?
+        li.nav-item.notification_counter
+          a href=notifications_path Powiadomienia:
         li.nav-item
           a href=new_category_path Nowa kategoria
         li.nav-item
