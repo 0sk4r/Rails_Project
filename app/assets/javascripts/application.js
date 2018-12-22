@@ -21,7 +21,7 @@ $(document).ready(function () {
     });
 
     $.get('/api/notifications/count', function(result) {
-        $('.notification_counter a').text(`Powiadomienia: ${result}`)
+        $('.notification_counter a').text(`Notifications: ${result}`)
     })
 });
 

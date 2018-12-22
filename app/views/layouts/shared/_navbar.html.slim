@@ -3,8 +3,14 @@ nav
     a.brand-logo href="/"  RailsProject
 
     ul#nav-mobile.right.hide-on-med-and-down
+      li
+        .input-field
+          i.material-icons.prefix search
+          input#autocomplete-input.autocomplete type="text" /
+          label for="autocomplete-input"  Search
+
       li.nav-item
-        =link_to("Kategorie", controller: "/categories", action: "index")
+        =link_to("Categories", controller: "/categories", action: "index")
 
       - if !author_signed_in?
         li.nav-item
@@ -12,10 +18,21 @@ nav
 
       - if author_signed_in?
         li.nav-item.notification_counter
-          a href=notifications_path Powiadomienia:
+          a href=notifications_path Notifications:
         li.nav-item
-          a href=new_category_path Nowa kategoria
+          a href=new_category_path New category
         li.nav-item
-          a href=edit_author_registration_path Zmień hasło
+          a href=edit_author_registration_path Settings
         li.nav-item
           a data-method='delete' href=destroy_author_session_path Logout
+
+  javascript:
+      $(document).ready(function () {
+          $('input.autocomplete').autocomplete({
+              data: {
+                  "Apple": null,
+                  "Microsoft": null,
+                  "Google": null,
+              }
+          });
+      });

@@ -40,3 +40,8 @@
 select {
   display: block;
 }
+
+/*
+Prevents SEARCH BAR (currently using autocomplete) from displaying incorrectly on chrome
+ */
+.input-field input[type=search]{ height: 64px !important; }
