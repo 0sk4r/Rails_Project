@@ -25,6 +25,9 @@ nav
           a href=edit_author_registration_path Settings
         li.nav-item
           a data-method='delete' href=destroy_author_session_path Logout
+        - if current_author.admin?
+          li.nav-item
+            a href=reports_path Raporty
 
   javascript:
       $(document).ready(function () {

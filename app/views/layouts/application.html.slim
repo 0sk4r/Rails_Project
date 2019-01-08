@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title
+      | RailsProject
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application'
+    script[src="https://cdnjs.cloudflare.com/ajax/libs/Caret.js/0.3.1/jquery.caret.min.js"]
+    script[src="https://cdnjs.cloudflare.com/ajax/libs/at.js/1.5.4/js/jquery.atwho.min.js"]
+    link[rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/at.js/1.5.4/css/jquery.atwho.css"]
+  body
+    = render partial: 'layouts/shared/navbar'
+    .container
+      .row.card.green
+        h5.notice
+          = notice
+      .row.card.red.darken-1
+        h5.alert
+          = alert
+
+      #report_modal.modal
+        .modal-content
+          h4
+            | Modal Header
+          p
+            | A bunch of text
+        .modal-footer
+          a.modal-close.waves-effect.waves-green.btn-flat[href="#!"]
+            | Agree
+
+      = yield

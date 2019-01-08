@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get '/notify/:id', to: 'posts#notify'
 
+  get '/delete_content/:id', to: 'posts#delete_content'
+
   resources :posts, only: %i[index show create new destroy] do
     resources :comments, only: %i[show create new destroy]
   end
@@ -34,5 +36,11 @@ Rails.application.routes.draw do
     get 'notifications/count', to: 'notifications#count'
     resources :author, only: [:index]
   end
+
+  resources :reports, only: [:index]
+  resources :posts do
+    resources :reports, only: [:create]
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

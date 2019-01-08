@@ -10,10 +10,10 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require materialize
 //= require rails-ujs
 //= require activestorage
-//= require_tree .
 
 $(document).ready(function () {
     $("button").click(function () {
@@ -22,7 +22,13 @@ $(document).ready(function () {
 
     $.get('/api/notifications/count', function(result) {
         $('.notification_counter a').text(`Notifications: ${result}`)
-    })
+    });
+
+    $('#report_modal_1').modal();
+
+    // $("#report_modal").click(function () {
+    //     $(`#report_modal_${$(this).data("id")}`).modal();
+    // });
 });
 
 $(function () {
@@ -37,4 +43,4 @@ $(function () {
                 }
             }
         });
-})
+});
