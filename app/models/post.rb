@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
+  include PgSearch
+  pg_search_scope :search, against: :title,
+                           using: {
+                             tsearch: { prefix: true, dictionary: 'english' }
+                           }
   after_save :notify_users
 
   belongs_to :author
