@@ -1,3 +1,4 @@
+# rubocop:disable  Metrics/BlockLength
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
     resources :comments, only: %i[show create new destroy]
   end
 
+  resources :posts, only: [:index]
+
   resources :comments, only: %i[show create new destroy] do
     resources :comments, only: %i[show create new destroy]
   end
@@ -34,6 +37,7 @@ Rails.application.routes.draw do
   namespace :api do
     get 'author/email_exists', to: 'author#email_exists'
     get 'notifications/count', to: 'notifications#count'
+    resources :posts, only: [:index]
     resources :author, only: [:index]
   end
 
@@ -44,3 +48,4 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+# rubocop:enable  Metrics/BlockLength

@@ -31,11 +31,20 @@ nav
 
   javascript:
       $(document).ready(function () {
-          $('input.autocomplete').autocomplete({
-              data: {
-                  "Apple": null,
-                  "Microsoft": null,
-                  "Google": null,
-              }
-          });
+          $('#autocomplete-input').keyup(function () {
+
+              let testInput = $(this).val();
+
+              $.get('/api/posts', {key: testInput}, function (result) {
+                  let autocomplete_data = {};
+                  for (let key in result) {
+                      autocomplete_data[result[key].title] = null
+                  }
+                  $('input.autocomplete').autocomplete({
+                      data: autocomplete_data
+                  }).autocomplete('open');
+              })
+          })
+
+
       });
