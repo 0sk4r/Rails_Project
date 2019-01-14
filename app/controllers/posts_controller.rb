@@ -3,6 +3,7 @@
 class PostsController < ApplicationController
   def index
     @top_post, @posts = ListPosts.run!
+    @posts = @posts.page(params[:page]).per(10)
   end
 
   before_action :authenticate_author!, only: %i[new create]
