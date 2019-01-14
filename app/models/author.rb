@@ -14,6 +14,18 @@ class Author < ApplicationRecord
   after_create :send_welcome_email
   after_update :send_notify_email
 
+  def account_banned?
+    blocked_to.nil? || blocked_to < Time.now
+  end
+
+  def active_for_authentication?
+    super && account_banned?
+  end
+
+  def inactive_message
+    account_banned? ? super : :locked
+  end
+
   private
 
   def send_welcome_email
