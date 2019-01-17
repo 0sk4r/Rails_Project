@@ -4,10 +4,15 @@ nav
 
     ul#nav-mobile.right.hide-on-med-and-down
       li
-        .input-field
-          i.material-icons.prefix search
-          input#autocomplete-input.autocomplete type="text" /
-          label for="autocomplete-input"  Search
+        a.waves-effect.waves-light.btn-large name="key" type="search"
+          | Search
+        .search-results
+      li
+        form action=posts_path
+          .input-field type="search" name='key'
+            i.material-icons.prefix search
+            input#autocomplete-input.autocomplete type="text" /
+            label for="autocomplete-input"  Search
 
       li.nav-item
         =link_to("Categories", controller: "/categories", action: "index")

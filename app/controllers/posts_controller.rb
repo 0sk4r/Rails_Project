@@ -1,9 +1,17 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
+  helper_method :sorting
+
   def index
     @top_post, @posts = ListPosts.run!
+    manage_posts
+    apply_sorting
     @posts = @posts.page(params[:page]).per(10)
+  end
+
+  def sorting
+    params[:sort_by] || cookies[:posts_sorting]
   end
 
   before_action :authenticate_author!, only: %i[new create]
@@ -61,5 +69,21 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:content, :title, :category_id).merge(author_id: current_author.id)
+  end
+
+  private
+
+  def manage_posts
+    if params[:key].nil?
+      @posts = PostsProvider.new(params[:key]).results
+    else
+      params[:key] = Post.all
+    end
+  end
+
+  def apply_sorting
+    cookies[:posts_sorting] = sorting
+
+    @posts = @posts.reorder(sorting) if sorting.in? ['created_at desc', 'created_at asc']
   end
 end

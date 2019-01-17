@@ -1,3 +1,7 @@
+.container
+  ul
+    = sorting_link(posts_path, 'created_at asc', sorting, {key: params[:key]})
+    = sorting_link(posts_path, 'created_at desc', sorting, {key: params[:key]})
 h1 Most voted post
 =render(partial: 'posts/post', object: @top_post)
 br
