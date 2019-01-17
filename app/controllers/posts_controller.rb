@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @top_post, @posts = ListPosts.run!
-    manage_posts
+    @posts = PostsProvider.new(params[:key]).results
     apply_sorting
     @posts = @posts.page(params[:page]).per(10)
   end
@@ -72,14 +72,6 @@ class PostsController < ApplicationController
   end
 
   private
-
-  def manage_posts
-    if params[:key].nil?
-      @posts = PostsProvider.new(params[:key]).results
-    else
-      params[:key] = Post.all
-    end
-  end
 
   def apply_sorting
     cookies[:posts_sorting] = sorting

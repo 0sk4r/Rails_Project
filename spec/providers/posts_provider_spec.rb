@@ -27,7 +27,7 @@ RSpec.describe PostsProvider do
     context 'when key is empty' do
       let(:key) { '' }
 
-      it { is_expected.to be_blank }
+      it { is_expected.to include(post1) }
     end
 
     context do
