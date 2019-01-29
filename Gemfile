@@ -7,6 +7,7 @@ ruby '2.5.0'
 
 gem 'activeadmin'
 gem 'devise'
+gem 'kaminari'
 gem 'materialize-sass'
 gem 'mini_magick'
 gem 'sidekiq'

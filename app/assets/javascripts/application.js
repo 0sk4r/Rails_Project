@@ -24,11 +24,7 @@ $(document).ready(function () {
         $('.notification_counter a').text(`Notifications: ${result}`)
     });
 
-    $('#report_modal_1').modal();
-
-    // $("#report_modal").click(function () {
-    //     $(`#report_modal_${$(this).data("id")}`).modal();
-    // });
+    $('.modal').modal();
 });
 
 $(function () {

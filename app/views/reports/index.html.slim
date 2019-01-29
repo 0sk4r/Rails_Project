@@ -6,6 +6,7 @@ table
       th Post content
       th Author
       th Action
+      th Ban
   tbody
     - @reports.each do | report |
       tr
@@ -14,3 +15,11 @@ table
         td =report.post.content
         td =report.post.author.nick
         td =link_to 'Delete content', controller: "posts", action: "delete_content", id: report.post.id
+        td
+          = form_for :authors,  url: authors_ban_path(), method: :post do |f|
+            .form-group
+              = f.number_field :time, placeholder: "minutes"
+            .form-group
+              = f.hidden_field :author, value: report.post.author.id
+            .form-group
+              = f.submit 'Ban', class: 'btn btn-primary'

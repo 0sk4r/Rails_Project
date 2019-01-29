@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
   resources :notifications, only: [:index]
   get 'notifications/mark_read', to: 'notifications#mark_read'
+  post 'authors/ban', to: 'authors#ban'
 
   namespace :api do
     get 'author/email_exists', to: 'author#email_exists'

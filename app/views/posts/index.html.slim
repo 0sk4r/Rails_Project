@@ -1,11 +1,18 @@
-h1 Most voted post
-=render(partial: 'posts/post', object: @top_post)
-br
-hr
-br
+.container
+  ul
+    = sorting_link(posts_path, 'created_at asc', sorting, {key: params[:key]})
+    = sorting_link(posts_path, 'created_at desc', sorting, {key: params[:key]})
+- if current_page?('/')
+    h1 Most voted post
+    =render(partial: 'posts/post', object: @top_post)
+    br
+    hr
+    br
 - @posts.each do |post|
   =render(partial: 'posts/post', object: post)
 
 .fixed-action-btn
   a.btn-floating.btn-large.red.pulse href=new_post_path
     i.large.material-icons mode_edit
+
+= paginate @posts

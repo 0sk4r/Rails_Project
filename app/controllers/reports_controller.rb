@@ -7,8 +7,8 @@ class ReportsController < ApplicationController
 
   def create
     set_post
-
-    @report = @post.reports.new(reporting_user: current_author)
+    description = params[:reports][:description]
+    @report = @post.reports.new(reporting_user: current_author, description: description)
     flash[:notice] = if @report.save
                        'Reported'
                      else
