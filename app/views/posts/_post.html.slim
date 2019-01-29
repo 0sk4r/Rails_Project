@@ -1,3 +1,13 @@
+.modal id="report_modal_#{post.id}"
+  .modal-content
+    h4
+      | Modal Header
+    p
+      | A bunch of text
+  .modal-footer
+    a.modal-close.waves-effect.waves-green.btn-flat[href="#!"]
+      | Agree
+
 div.row.post.z-depth-4
   div.row
     div.col.s2
@@ -26,3 +36,7 @@ div.row.post.z-depth-4
         a href=new_vote_path(voting_object_id: post.id, voting_object_type: post.class, vote_type: 1)
           i.small.material-icons thumb_down
         =link_to "Reminder", controller: "posts", action: "notify", id: post.id
+        / button.btn.modal-trigger data-target=`#report_modal_#{post.id}`
+        /   | Report
+        / = button_to "Report", reports_path, method: :post, params: {post: post}
+        = button_to "Report", post_reports_path(post), method: :post

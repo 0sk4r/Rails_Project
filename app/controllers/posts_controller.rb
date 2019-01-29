@@ -50,6 +50,14 @@ class PostsController < ApplicationController
     redirect_back fallback_location: '/'
   end
 
+  def delete_content
+    post = Post.find(params[:id])
+    post.update_attribute(:content, 'Delete by moderator')
+    post.save
+
+    redirect_to reports_path
+  end
+
   def post_params
     params.require(:post).permit(:content, :title, :category_id).merge(author_id: current_author.id)
   end

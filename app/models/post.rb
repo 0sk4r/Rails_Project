@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
+  include PgSearch
+  pg_search_scope :search, against: :title,
+                           using: {
+                             tsearch: { prefix: true, dictionary: 'english' }
+                           }
   after_save :notify_users
 
   belongs_to :author
@@ -9,6 +14,7 @@ class Post < ApplicationRecord
   has_many :comments, as: :commented_by, dependent: :delete_all
   has_one_attached :thumbnail
   has_many :votes, as: :voting_object, dependent: :delete_all
+  has_many :reports
   # has_many :voters, through: :votes
 
   validates_presence_of :content

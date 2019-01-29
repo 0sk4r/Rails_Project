@@ -10,7 +10,7 @@ class Author < ApplicationRecord
   has_many :votes
   has_many :liked_posts, through: :votes
   has_many :notifications, foreign_key: :recipient_id
-
+  has_many :reports
   after_create :send_welcome_email
   after_update :send_notify_email
 

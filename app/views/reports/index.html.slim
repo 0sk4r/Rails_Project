@@ -1,0 +1,16 @@
+table
+  thead
+    tr
+      th ID
+      th Description
+      th Post content
+      th Author
+      th Action
+  tbody
+    - @reports.each do | report |
+      tr
+        td =report.id
+        td =report.description
+        td =report.post.content
+        td =report.post.author.nick
+        td =link_to 'Delete content', controller: "posts", action: "delete_content", id: report.post.id

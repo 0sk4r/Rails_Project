@@ -10,10 +10,10 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require materialize
 //= require rails-ujs
 //= require activestorage
-//= require_tree .
 
 $(document).ready(function () {
     $("button").click(function () {
@@ -22,7 +22,13 @@ $(document).ready(function () {
 
     $.get('/api/notifications/count', function(result) {
         $('.notification_counter a').text(`Notifications: ${result}`)
-    })
+    });
+
+    $('#report_modal_1').modal();
+
+    // $("#report_modal").click(function () {
+    //     $(`#report_modal_${$(this).data("id")}`).modal();
+    // });
 });
 
 $(function () {
@@ -37,4 +43,38 @@ $(function () {
                 }
             }
         });
-})
+});
+
+$(document).ready(function () {
+    $('#autocomplete-input').keyup(debounce(function() {
+
+        let testInput = $(this).val();
+
+        $.get('/api/posts', {key: testInput}, function (result) {
+            let autocomplete_data = {};
+            for (let key in result) {
+                autocomplete_data[result[key].title] = null
+            }
+            $('input.autocomplete').autocomplete({
+                data: autocomplete_data
+            }).autocomplete('open');
+        })
+    }, 300))
+
+
+});
+
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+};

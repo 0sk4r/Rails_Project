@@ -25,14 +25,6 @@ nav
           a href=edit_author_registration_path Settings
         li.nav-item
           a data-method='delete' href=destroy_author_session_path Logout
-
-  javascript:
-      $(document).ready(function () {
-          $('input.autocomplete').autocomplete({
-              data: {
-                  "Apple": null,
-                  "Microsoft": null,
-                  "Google": null,
-              }
-          });
-      });
+        - if current_author.admin?
+          li.nav-item
+            a href=reports_path Raporty
